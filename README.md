@@ -91,8 +91,4 @@ Launch online WPS bruteforce with the specified first half of the PIN:
  Try disabling Wi-Fi in the system settings and kill the Network manager. Alternatively, you can try running OneShot with ```--iface-down``` argument.
 #### The wlan0 interface disappears when Wi-Fi is disabled on Android devices with MediaTek SoC
  Try running OneShot with the `--mtk-wifi` flag to initialize Wi-Fi device driver.
-# Acknowledgements
-## Special Thanks
-* `rofl0r` for initial implementation;
-* `Monohrom` for testing, help in catching bugs, some ideas;
-* `Wiire` for developing Pixiewps.
+
