@@ -24,11 +24,15 @@ Please note that root access is required.
  ```
 **Getting OneShot**
  ```
- git clone --depth 1 https://github.com/jevgenyonegin/OneShot_Termux_mod OneShot
+ git clone --depth 1 https://github.com/TasnimulHasan0/OneShot
  ```
 #### Running
  ```
  sudo python OneShot/oneshot.py -i wlan0 --iface-down -K
+
+or
+sudo python OneShot/oneshot.py -i wlan0 --iface-down -K
+
  ```
 
 # Usage
