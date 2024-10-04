@@ -1,4 +1,3 @@
-# OneShot for Termux (Root)
 
 # Overview
 **OneShot** performs [Pixie Dust attack](https://forums.kali.org/showthread.php?24286-WPS-Pixie-Dust-Attack-Offline-WPS-Attack) without having to switch to monitor mode.
@@ -14,13 +13,18 @@
  - [iw](https://wireless.wiki.kernel.org/en/users/documentation/iw).
 # Setup
 
-## [Termux](https://f-droid.org/en/packages/com.termux/)
+## [Termux](https://termux.com/)
 Please note that root access is required.  
 
+#### Using installer
+ ```
+ Will be available soon
+ ```
+#### Manually
 **Installing requirements**
  ```
  pkg install -y root-repo
- pkg install -y git tsu python wpa-supplicant pixiewps iw openssl play-audio
+ pkg install -y git tsu python wpa-supplicant pixiewps iw openssl
  ```
 **Getting OneShot**
  ```
@@ -28,11 +32,11 @@ Please note that root access is required.
  ```
 #### Running
  ```
- sudo python OneShot/oneshot.py -i wlan0 --iface-down -K
+cd OneShot && sudo python oneshot.py -i wlan0 --iface-down -K 
 
-or
+Or
+
 sudo python OneShot/oneshot.py -i wlan0 --iface-down -K
-
  ```
 
 # Usage
@@ -46,7 +50,7 @@ sudo python OneShot/oneshot.py -i wlan0 --iface-down -K
      -p, --pin=<wps pin>      : Use the specified pin (arbitrary string or 4/8 digit pin)
      -K, --pixie-dust         : Run Pixie Dust attack
      -B, --bruteforce         : Run online bruteforce attack
-     --pbc                    : Run WPS push button connection
+     --push-button-connect    : Run WPS push button connection
 
  Advanced arguments:
      -d, --delay=<n>          : Set the delay between pin attempts [0]
@@ -56,6 +60,7 @@ sudo python OneShot/oneshot.py -i wlan0 --iface-down -K
      --vuln-list=<filename>   : Use custom file with vulnerable devices list ['vulnwsc.txt']
      --iface-down             : Down network interface when the work is finished
      -l, --loop               : Run in a loop
+     -r, --reverse-scan       : Reverse order of networks in the list of networks. Useful on small displays
      --mtk-wifi               : Activate MediaTek Wi-Fi interface driver on startup and deactivate it on exit
                                 (for internal Wi-Fi adapters implemented in MediaTek SoCs). Turn off Wi-Fi in the system settings before using this.
      -v, --verbose            : Verbose output
@@ -74,6 +79,10 @@ Launch online WPS bruteforce with the specified first half of the PIN:
  ```
  sudo python3 oneshot.py -i wlan0 -b 00:90:4C:C1:AC:21 -B -p 1234
  ```
+ Start WPS push button connection:s
+ ```
+ sudo python3 oneshot.py -i wlan0 --pbc
+ ```
 ## Troubleshooting
 #### "RTNETLINK answers: Operation not possible due to RF-kill"
  Just run:
@@ -81,16 +90,9 @@ Launch online WPS bruteforce with the specified first half of the PIN:
 #### "Device or resource busy (-16)"
  Try disabling Wi-Fi in the system settings and kill the Network manager. Alternatively, you can try running OneShot with ```--iface-down``` argument.
 #### The wlan0 interface disappears when Wi-Fi is disabled on Android devices with MediaTek SoC
- Try run the following:
-```
-sudo chmod 644 /dev/wmtWifi
-sudo sh -c 'echo 1 > /dev/wmtWifi'
-```
+ Try running OneShot with the `--mtk-wifi` flag to initialize Wi-Fi device driver.
 # Acknowledgements
 ## Special Thanks
 * `rofl0r` for initial implementation;
-* **`drygdryg` for developing OneShot**;
 * `Monohrom` for testing, help in catching bugs, some ideas;
-* `Wiire` developing Pixiewps;
-* **`eda-abec` for vulwsc updates and support**;
-* `vilvius31` for project support;
+* `Wiire` for developing Pixiewps.
