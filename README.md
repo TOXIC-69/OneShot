@@ -16,10 +16,6 @@
 ## [Termux](https://termux.com/)
 Please note that root access is required.  
 
-#### Using installer
- ```
- Will be available soon
- ```
 #### Manually
 **Installing requirements**
  ```
